@@ -1,0 +1,37 @@
+services:
+  
+  backend:
+    container_name: backend
+    build:
+      context: ./Backend
+      dockerfile: ./Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      database:
+        condition: service_healthy
+  
+  website:
+    container_name: website
+    build:
+      context: ./Website
+      dockerfile: ./Dockerfile
+      args:
+        HOST: "0.0.0.0"
+        PORT: 3000
+    ports:
+      - "3000:3000"
+  
+  database:
+    image: mariadb
+    ports:
+      - "3306:3306"
+    environment:
+      - MARIADB_RANDOM_ROOT_PASSWORD=1
+    volumes:
+      - "db:/var/lib/mysql"
+      - "./Database/init.sql:/docker-entrypoint-initdb.d/1.sql"
+
+volumes:
+  db:
+    driver: local
