@@ -20,7 +20,7 @@ const Navbar = () => {
         <Link href="/profile">Profile</Link>
         <Link href="/profile">
           <img
-            src="/profile.jpg"
+            src="/profile.png"
             alt="Profile"
             style={{
               height: "40px",
