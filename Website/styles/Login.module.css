@@ -1,0 +1,220 @@
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--light);
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  height: 80%;
+  background-color: var(--white);
+  border-radius: 15px;
+}
+
+.left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--blue);
+  max-width: 50%;
+  border-radius: 15px 0px 0px 15px;
+}
+
+.left img {
+  width: 95%;
+  height: 95%;
+  object-fit: fill;
+  border-radius: 15px;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 50%;
+  width: 50%;
+  /* padding: 2rem; */
+  gap: 0;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  width: 75%;
+  gap: 0;
+}
+
+.top h1 {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--black);
+}
+
+.desc {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--grey);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 75%;
+}
+
+.inputfield {
+  position: relative;
+  width: 100%;
+  background-color: transparent;
+}
+
+.inputfield label {
+  position: absolute;
+  color: #8d8d8d;
+  pointer-events: none;
+  background-color: transparent;
+  left: 15px;
+  transform: translateY(0.6rem);
+  transition: all 0.3s ease;
+}
+
+.inputfield input {
+  padding: 15px 15px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: solid 1px var(--grey);
+  letter-spacing: 1px;
+  width: 100%;
+  background-color: transparent;
+}
+
+.inputfield input:focus,
+.inputfield input:valid {
+  outline: none;
+  border: solid 1px var(--blue);
+}
+
+.inputfield input:focus ~ label,
+.inputfield input:valid ~ label {
+  transform: translateY(-51%) translateX(-10px) scale(0.8);
+  background-color: var(--white);
+  padding: 0px 5px;
+  color: var(--blue);
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 100px;
+}
+
+.rememberforgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: medium;
+}
+
+.rememberforgot a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.materialcheckbox {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #777777;
+  cursor: pointer;
+}
+
+.materialcheckbox input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkmark {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  border: 2px solid var(--grey);
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.materialcheckbox input[type="checkbox"]:checked ~ .checkmark {
+  background-color: var(--white);
+  border-color: var(--grey);
+}
+
+.materialcheckbox input[type="checkbox"]:checked ~ .checkmark:after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 4px;
+  height: 10px;
+  border: solid var(--blue);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.materialcheckbox input[type="checkbox"]:focus ~ .checkmark {
+  box-shadow: 0 0 0 2px var(--light-blue);
+}
+
+.materialcheckbox:hover input[type="checkbox"] ~ .checkmark {
+  border-color: var(--blue);
+}
+
+.materialcheckbox input[type="checkbox"]:disabled ~ .checkmark {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.materialcheckbox input[type="checkbox"]:disabled ~ .checkmark:hover {
+  border-color: var(--grey);
+}
+
+.form button {
+ font-size: 18px;
+ padding: 0.5em 2em;
+ border: transparent;
+ box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+ background: var(--blue);
+ color: var(--white);
+ border-radius: 5px;
+ width: 100%;
+}
+
+.form button:hover {
+ background: var(--blue);
+ background: linear-gradient(90deg, var(--blue) 0%, var(--light-blue) 100%);
+}
+
+.form button:active {
+ transform: translate(0em, 0.2em);
+}
+
+.form p {
+  font-size: 16px;
+  color: var(--grey);
+}
+
+.form p a {
+  color: var(--blue);
+  text-decoration: none;
+}
