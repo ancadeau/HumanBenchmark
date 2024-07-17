@@ -1,0 +1,11 @@
+/* styles.css */
+.chart-canvas {
+  width: 200px;
+  height: 200px;
+}
+
+.test {
+  width: 200px;
+  height: 200px;
+  background-color: red;
+}
