@@ -7,10 +7,9 @@ interface Props {
   children: React.ReactNode;
 }
 
-export const Layout = ({ children }: Props) => {
+export const GameLayout = ({ children }: Props) => {
   return (
     <>
-      <MyNavbar />
       <main className="flex flex-col h-screen">{children}</main>
     </>
   );

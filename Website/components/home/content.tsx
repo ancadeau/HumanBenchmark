@@ -1,7 +1,12 @@
 "use client";
 import React from "react";
+import GameHandler from "./games/GameHandler";
 
-export const Content = () => (
-  <div className="h-full lg:px-6">
-  </div>
-);
+export const Content = () => {
+  return (
+    <div className="scroll-container">
+      <GameHandler />
+      <div className="section bg-red-100">Section 2</div>
+    </div>
+  );
+};
