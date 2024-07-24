@@ -5,8 +5,7 @@ CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(24) NOT NULL,
     password CHAR(60) NOT NULL,
-    dob DATE,
-    auth_token CHAR(128),
+    dob DATE NOT NULL,
     best_run INT
 );
 
@@ -18,7 +17,7 @@ CREATE TABLE IF NOT EXISTS scores (
     game_sequence_memory INT NOT NULL,
     game_chimp_test INT NOT NULL,
     game_reaction_time INT NOT NULL,
-    date DATE,
+    date DATETIME NOT NULL ,
     score INT NOT NULL
 );
 
