@@ -1,10 +1,9 @@
 ﻿<?php
+ob_start();
 session_start();
-
 require_once "utils/result.php";
-
 if (isset($_SESSION["profile"])) {
-    send_error("User already logged in", 400, "index.php");
+    send_error("User already logged in", 302, "index.php");
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -67,3 +66,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     include_once "html/register.html";
 }
+ob_end_flush();

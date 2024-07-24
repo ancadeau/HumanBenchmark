@@ -1,12 +1,9 @@
 <?php
-
-// Start the session
-session_start();
 ob_start();
-
+session_start();
 if (!isset($_SESSION['profile'])) {
-    header("Location: login.php");
-    http_response_code(301);
+    send_error("User already logged in", 302, "login.php");
 } else {
     include_once "html/index.html";
 }
+ob_end_flush();
