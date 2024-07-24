@@ -34,11 +34,14 @@ const SpeedTest: React.FC = () => {
       const clickDuration = endTime - startTime;
       setClickTime(clickDuration);
       setGameState("result");
+    }
+  };
+
+  const sendScore = () => {
       window.parent.postMessage(
-        { type: "gameEnd", score: clickDuration },
+        { type: "gameEnd", score: clickTime },
         window.location.origin
       );
-    }
   };
 
   return (
@@ -66,7 +69,7 @@ const SpeedTest: React.FC = () => {
         </div>
       )}
       {gameState === "result" && (
-        <div className="w-full h-full flex flex-col justify-center items-center gap-32 bg-blue-500 text-white font-medium">
+        <div className="w-full h-full flex flex-col justify-center items-center gap-32 bg-blue-500 text-white font-medium" onClick={sendScore}>
           <EclairIcon />
           <div className="text-center">
             You clicked in:
