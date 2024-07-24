@@ -1,12 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { Button } from "@nextui-org/button";
-import NumberMemory from "@/components/home/games/NumberMemery";
+import React from "react";
+import NumberMemory from "@/components/home/games/NumberMemory";
 
 const numberMemory: React.FC = () => {
-  return (
-    <NumberMemory />
-  );
+  return <NumberMemory />;
 };
 
 export default numberMemory;
