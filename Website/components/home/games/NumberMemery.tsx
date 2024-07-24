@@ -59,6 +59,8 @@ const NumberMemory: React.FC = () => {
       <div onClick={handleNextGameClick}>
         <h1>End of the test</h1>
         <p>Your score: {points}</p>
+        <p>the correct number was: {currentNumber}</p>
+        <p>you guessed: {userInput}</p>
         <p>Click to go to the next game</p>
       </div>
     );
