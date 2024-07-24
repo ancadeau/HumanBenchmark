@@ -39,10 +39,12 @@ const SpeedTest: React.FC = () => {
   };
 
   const sendScore = () => {
-      window.parent.postMessage(
-        { type: "gameEnd", score: 100-((clickTime*50)/273) },
-        window.location.origin
-      );
+    let scaledScore = 100 - (clickTime * 50) / 273;
+    scaledScore = scaledScore < 0 ? 0 : scaledScore;
+    window.parent.postMessage(
+      { type: "gameEnd", score: scaledScore },
+      window.location.origin
+    );
   };
 
   const pressOnRed = () => {
