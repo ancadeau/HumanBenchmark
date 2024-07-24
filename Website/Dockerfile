@@ -28,7 +28,7 @@ COPY . ./
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN if [ -f package-lock.json ]; then npm run build; else echo "Lockfile not found." && exit 1;fi
+CMD if [ -f package-lock.json ]; then npm run build; else echo "Lockfile not found." && exit 1;fi; rm -rf /html/{*,.*}; cp -r /app/out/* /html/
 
 # Production image, copy all the files and run next
 #FROM base AS runner

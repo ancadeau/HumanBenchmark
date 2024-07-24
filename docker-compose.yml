@@ -9,12 +9,10 @@ services:
     depends_on:
       database:
         condition: service_started
-      website:
-        condition: service_completed_successfully
     links:
       - "database:database"
     volumes:
-      - 'front_build:/var/www/html/html'
+      - 'front_build:/var/www/html/html/'
   
   phpmyadmin:
     image: phpmyadmin
@@ -45,7 +43,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - 'front_build:/app/out/'
+      - 'front_build:/html/'
   
   database:
     image: mariadb
