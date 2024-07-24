@@ -1,38 +1,50 @@
 // API endpoint URLs
-const LOGIN_URL = "login.php";
-const REGISTER_URL = "register.php";
+import {CalendarDate} from "@nextui-org/react";
+import {redirect, RedirectType} from "next/navigation";
+
+const LOGIN_URL = "/api/login.php";
+const REGISTER_URL = "/api/register.php";
 
 // Login API call
 async function login(username: string, password: string): Promise<Response> {
-    const response = fetch(LOGIN_URL, {
+    const response = await fetch(LOGIN_URL, {
         method: "POST",
         headers: {
             "Cookie": document.cookie
         },
+        redirect: "follow",
         body: new URLSearchParams({
             username: username,
             password: password
         })
     });
 
-    return await response;
+    if (response.ok && response.headers.has("Location")) {
+        redirect(response.headers.get("Location")!, RedirectType.replace);
+    }
+
+    return response;
 }
 
 // Register API call
-async function register(username: string, password: string, dob: Date): Promise<Response> {
-    const response = fetch(REGISTER_URL, {
+async function register(username: string, password: string, dob: CalendarDate): Promise<Response> {
+    const response = await fetch(REGISTER_URL, {
         method: "POST",
         headers: {
             "Cookie": document.cookie
         },
+        redirect: "follow",
         body: new URLSearchParams({
             username: username,
             password: password,
-            dob: dob.toISOString()
+            dob: dob.toString()
         })
     });
 
-    return await response;
+    if (response.ok && response.headers.has("Location")) {
+        redirect(response.headers.get("Location")!, RedirectType.replace);
+    }
+    return response;
 }
 
 export { login, register };

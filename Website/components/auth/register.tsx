@@ -2,14 +2,15 @@
 
 import { RegisterSchema } from "@/helpers/schemas";
 import { RegisterFormType } from "@/helpers/types";
-import { Input, Button, Spacer, DateInput, DateValue } from "@nextui-org/react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Input, Button, DateInput, DateValue } from "@nextui-org/react";
+import { Formik, Form } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { getLocalTimeZone, parseDate, today } from "@internationalized/date";
 import Image from "next/image";
 import logo from "@/public/logo.png";
+import {register} from "@/utils/api";
 
 export const Register = () => {
   const router = useRouter();
@@ -23,7 +24,13 @@ export const Register = () => {
 
   const handleRegister = useCallback(
     async (values: RegisterFormType) => {
-      console.log(values);
+      const response = await register(values.username, values.password, values.dob);
+      const data = await response.json();
+      if (response.ok) {
+        console.log(data.value);
+      } else {
+        console.log(data.error);
+      }
     },
     [router]
   );

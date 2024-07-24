@@ -2,8 +2,11 @@
 ob_start();
 session_start();
 require_once "utils/result.php";
+require_once "utils/database.php";
+require_once "utils/Profile.php";
+
 if (isset($_SESSION["profile"])) {
-    send_error("User already logged in", 302, "index.php");
+    send_error("User already logged in", 302, "/index.html");
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -39,8 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         send_error("Invalid fields", 400);
     }
 
-    require_once "utils/database.php";
-
     // Hash the password
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -49,7 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $conn->prepare($query);
     $stmt->bindParam(':username', $username);
     $stmt->bindParam(':password', $hashedPassword);
-    $stmt->bindParam(':dob', $dob);
+    $format = $dob->format('Y-m-d');
+    $stmt->bindParam(':dob', $format);
 
     if ($stmt->execute()) {
         $id = $conn->lastInsertId();
@@ -59,11 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $id = intval($id);
         $profile = new Profile($id, $username, $dob, null);
         $_SESSION["profile"] = $profile;
-        send_success("User successfully registered", 200, "index.php");
+        send_success("User successfully registered", 302, "/index.html");
     } else {
         send_error("Failed to create user", 500);
     }
-} else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    include_once "html/register.html";
 }
-ob_end_flush();

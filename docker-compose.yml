@@ -5,14 +5,14 @@ services:
       context: ./Backend
       dockerfile: ./Dockerfile
     ports:
-      - "8080:80"
+      - "8080:8080"
     depends_on:
       database:
         condition: service_started
     links:
       - "database:database"
     volumes:
-      - 'front_build:/var/www/html/html/'
+      - 'front_build:/var/www/html/'
   
   phpmyadmin:
     image: phpmyadmin

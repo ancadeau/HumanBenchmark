@@ -6,7 +6,7 @@ if (isProd) {
   module.exports = {
     output: "export",
     reactStrictMode: true,
-    basePath: '/html',
+//    basePath: '/html',
     images: {
       unoptimized: true
     },

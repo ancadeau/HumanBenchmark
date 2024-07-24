@@ -1,5 +1,17 @@
-FROM php:8.3-apache
+FROM trafex/php-nginx:3.6.0
 
-RUN docker-php-ext-install pdo pdo_mysql
+USER root
 
-COPY src/ /var/www/html/
+RUN apk update
+
+RUN apk add php83-pdo_mysql
+
+RUN mkdir /var/www/api
+
+RUN chown -R nobody.nobody /var/www/api
+
+COPY server.conf /etc/nginx/conf.d/default.conf
+
+USER nobody
+
+COPY src/ /var/www/api/

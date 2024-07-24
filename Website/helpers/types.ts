@@ -1,5 +1,5 @@
 // FORMS
-import { DateValue } from "@nextui-org/react";
+import {CalendarDate} from "@nextui-org/react";
 
 export type LoginFormType = {
   username: string;
@@ -11,5 +11,5 @@ export type RegisterFormType = {
   username: string;
   password: string;
   confirmPassword: string;
-  dob: DateValue;
+  dob: CalendarDate;
 };

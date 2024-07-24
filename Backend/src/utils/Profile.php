@@ -1,7 +1,4 @@
 ﻿<?php
-
-use Cassandra\Date;
-
 class Profile
 {
     public int $id;
@@ -12,7 +9,7 @@ class Profile
     public function __construct(int $id, string $username, DateTime $dob, int|null $best) {
         $this->id = $id;
         $this->username = $username;
-        $this->dob = Date::fromDateTime($dob);
+        $this->dob = $dob;
         $this->best = $best;
     }
 
@@ -21,3 +18,4 @@ class Profile
         return $this->best !== null;
     }
 }
+?>
