@@ -67,7 +67,7 @@ const SequenceMemory: React.FC = () => {
 
   const handleNextGameClick = () => {
     window.parent.postMessage(
-      { type: "gameEnd", score: points },
+      { type: "gameEnd", score: (points*50)/8.5 },
       window.location.origin
     );
   };
