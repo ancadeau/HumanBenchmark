@@ -11,8 +11,8 @@ interface Games {
 
 const games: Games[] = [
   { name: "Chimp Test", url: "/games/chimpTest", backendName: "chimpTest" },
-  { name: "Word Memory", url: "/games/wordMemory", backendName: "wordMemory" },
-  { name: "Speed Test", url: "/games/speedTest", backendName: "speedTest" },
+  // { name: "Word Memory", url: "/games/wordMemory", backendName: "wordMemory" },
+  // { name: "Speed Test", url: "/games/speedTest", backendName: "speedTest" },
   // { name: "Reaction Test", url: "/app/reactionTest", backendName: "reactionTest" },
 ];
 
