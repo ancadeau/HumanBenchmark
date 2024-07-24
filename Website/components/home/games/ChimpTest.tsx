@@ -9,7 +9,6 @@ const ChimpTest: React.FC = () => {
   const [grid, setGrid] = useState<(number | null)[]>([]);
   const [currentClick, setCurrentClick] = useState(1);
   const [strikes, setStrikes] = useState(0);
-  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     if (gameState === "initial" || gameState === "clicking") {
@@ -53,7 +52,6 @@ const ChimpTest: React.FC = () => {
         }
       } else {
         setStrikes(strikes + 1);
-        setErrorMessage("Wrong square clicked!");
         if (strikes + 1 >= 3) {
           setGameState("result");
         } else {
@@ -75,55 +73,72 @@ const ChimpTest: React.FC = () => {
     display: "grid",
     gridTemplateColumns: "repeat(7, 1fr)",
     gridTemplateRows: "repeat(5, 1fr)",
-    gap: "10px",
+    gap: "5px",
+    width: "100%",
+    height: "auto",
   };
 
   const squareStyle = {
-    width: "60px",
-    height: "60px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    fontSize: "24px",
+    fontSize: "2vw",
     fontWeight: "bold",
     cursor: "pointer",
+    aspectRatio: "1 / 1",
+    borderRadius: "5px",
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center select-none">
+    <div className="w-full h-full flex flex-col justify-center items-center select-none relative bg-blue-500">
       {gameState === "initial" && (
         <div
-          className="w-full h-full flex flex-col justify-center items-center select-none"
+          className="w-full h-full flex flex-col justify-center items-center text-center select-none"
           onClick={handleStart}
         >
-          {errorMessage === "" ? (
-            ""
-          ) : (
-            <div className="text-red-500">{errorMessage}</div>
-          )}
-          Start the game
+          <div className="max-w-lg p-4">
+            <h1 className="text-2xl font-bold mb-4">Chimp Test Game</h1>
+            <p className="mb-4">
+              Welcome to the Chimp Test! The goal of this game is to click on
+              the squares in ascending numerical order. The game starts with a
+              few squares, and with each level, the number of squares increases.
+              If you click on a square out of order, you get a strike. You have
+              three strikes before the game is over. Good luck!
+            </p>
+            <p className="font-bold">
+              Click the screen to start the game!
+            </p>
+          </div>
         </div>
       )}
       {gameState === "clicking" && (
-        <div style={gridStyle}>
-          {grid.map((num, index) => (
-            <div
-              key={index}
-              style={{
-                ...squareStyle,
-                backgroundColor: num
-                  ? currentClick > 1
-                    ? "gray"
-                    : "white"
-                  : "transparent",
-                pointerEvents: num ? "auto" : "none",
-              }}
-              onClick={() => handleSquareClick(num, index)}
-            >
-              {currentClick > 1 || !num ? "" : num}
+        <>
+          <div className="top-4 text-2xl font-bold w-full max-w-screen-lg p-2 flex justify-between">
+            <p>Life left: {3 - strikes}</p>
+            <p>Score: {level - 1}</p>
+          </div>
+          <div className="border-4 border-blue-600 w-full max-w-screen-lg p-2">
+            <div style={gridStyle}>
+              {grid.map((num, index) => (
+                <div
+                  key={index}
+                  style={{
+                    ...squareStyle,
+                    backgroundColor: num
+                      ? currentClick > 1
+                        ? "#2563EB"
+                        : "#93C5FD"
+                      : "transparent",
+                    pointerEvents: num ? "auto" : "none",
+                  }}
+                  onClick={() => handleSquareClick(num, index)}
+                >
+                  {currentClick > 1 || !num ? "" : num}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        </>
       )}
       {gameState === "result" && (
         <div
