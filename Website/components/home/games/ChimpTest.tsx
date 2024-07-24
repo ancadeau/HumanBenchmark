@@ -93,7 +93,7 @@ const ChimpTest: React.FC = () => {
     <div className="w-full h-full flex flex-col justify-center items-center select-none relative bg-blue-500">
       {gameState === "initial" && (
         <div
-          className="w-full h-full flex flex-col justify-center items-center text-center select-none"
+          className="w-full h-full flex flex-col justify-center items-center text-center select-none text-white"
           onClick={handleStart}
         >
           <div className="max-w-lg p-4">

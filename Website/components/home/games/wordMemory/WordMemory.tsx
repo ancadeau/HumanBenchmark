@@ -11,7 +11,9 @@ const WordMemory: React.FC = () => {
   const [points, setPoints] = React.useState<number>(0);
   const [availableWords, setAvailableWords] = React.useState<string[]>([]);
   const [gameOver, setGameOver] = React.useState<boolean>(false);
-  const [gameState, setGameState] = React.useState<"initial" | "playing" | "result">("initial");
+  const [gameState, setGameState] = React.useState<
+    "initial" | "playing" | "result"
+  >("initial");
 
   const randomizeWords = (words: string[]) => {
     for (let i = words.length - 1; i > 0; i--) {
@@ -84,14 +86,37 @@ const WordMemory: React.FC = () => {
 
   if (gameState === "initial") {
     return (
-      <div className="w-full h-full flex flex-col justify-center items-center select-none bg-blue-500 text-white py-5">
+      <div
+        className="w-full h-full flex flex-col justify-center items-center select-none bg-blue-500 text-white py-5"
+        onClick={handleStartGameClick}
+      >
         <h1 className="font-bold text-3xl mb-4">Word Memory Game</h1>
-        <button
-          className="px-4 py-2 bg-blue-600 text-white font-medium rounded border-1 border-white hover:bg-blue-700"
-          onClick={handleStartGameClick}
-        >
-          Start Game
-        </button>
+        <p className="text-lg text-center mb-4">
+          Objective: Test and improve your memory by identifying whether a word
+          has been displayed before.
+          <br />
+          How to Play:
+          <br />
+          1. A word appears on the screen.
+          <br />
+          2. Try to remember if you have seen it before.
+          <br />
+          3. For each word, you have two options:
+          <br />
+          - Seen: Select this option if you remember seeing this word earlier.
+          <br />
+          - New: Select this option if you believe the word is being displayed
+          for the first time.
+          <br />
+          4. You start with 3 lives. Each time you make an incorrect choice, you
+          lose a life.
+          <br />
+          5. The game continues until you lose all your lives. Your final score
+          is based on the number of correct answers before running out of lives.
+          <br />
+          <br />
+        </p>
+        <p className="font-bold">Click on the screen to start the game.</p>
       </div>
     );
   }
