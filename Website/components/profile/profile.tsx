@@ -5,7 +5,7 @@ import LineChart from "../home/charts/line-char";
 import { Avatar } from "@nextui-org/react";
 
 export const Profile = () => {
-  const [name, setName] = useState("TestUser");
+  const [name, setName] = useState("MyUserName");
   const spidermanDatasets = [
     {
       label: "1st test",
@@ -30,14 +30,13 @@ export const Profile = () => {
   const lineChartLabels = ["Test1", "Test2", "Test3", "Test4", "Test5"];
 
   return (
-    <div className="w-full h-full bg-blue-500 text-white">
-
-      <div className="flex flex-row bg-white text-gray-800">
+    <div className="w-full h-full bg-white text-white">
+      <div className="flex flex-row w-full justify-center gap-8 bg-white text-gray-800 pt-24">
         <Avatar isBordered color="default" size="md" src="profile.png" />
         <h1>{name}</h1>
       </div>
-      <br/>
-      <div className="flex flew-row bg-white justify-between">
+      <br />
+      <div className="flex flew-row bg-white justify-between px-12">
         <Spiderman datasets={spidermanDatasets} />
         <LineChart datasets={lineChartDatasets} labels={lineChartLabels} />
       </div>

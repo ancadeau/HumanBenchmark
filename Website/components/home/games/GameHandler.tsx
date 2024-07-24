@@ -78,7 +78,7 @@ const GameHandler: React.FC = () => {
           onClick={() => setIsGameLaunched(true)}
         >
           <div className="pt-100"></div>
-          <CatchPhrase className="flex-grow flex flex-col justify-center items-center" />
+          <CatchPhrase className="flex-grow flex flex-col justify-center items-center h-1/2 w-1/2" />
           <div className="flex flex-col justify-end items-center w-full p-4 text-white">
             Click to START
             <DownArrowIcon />
