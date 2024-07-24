@@ -23,6 +23,7 @@
     "@nextui-org/system": "^2.2.5",
     "@nextui-org/theme": "^2.2.9",
     "apexcharts": "^3.35.5",
+    "chart.js": "^4.4.3",
     "clsx": "^2.0.0",
     "formik": "^2.4.6",
     "framer-motion": "^10.17.0",

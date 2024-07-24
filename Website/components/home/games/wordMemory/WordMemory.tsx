@@ -71,7 +71,7 @@ const WordMemory: React.FC = () => {
 
   const handleNextGameClick = () => {
     window.parent.postMessage(
-      { type: "gameEnd", score: points },
+      { type: "gameEnd", score: (points*50)/30 },
       window.location.origin
     );
   };
