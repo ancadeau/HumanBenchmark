@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import gameWords from "./words";
+import { Button } from "@nextui-org/button";
 
 const WordMemory: React.FC = () => {
   const [words, setWords] = React.useState<string[]>([]);
@@ -86,16 +87,33 @@ const WordMemory: React.FC = () => {
   }
 
   return (
-    <div>
-      <div>Lives: {lives}</div>
-      <div>Points: {points}</div>
-      <div>Current Word: {words[currentWordIndex]}</div>
-      <button onClick={handleNewButtonClick} disabled={lives <= 0}>
-        New
-      </button>
-      <button onClick={handleSeenButtonClick} disabled={lives <= 0}>
-        Seen
-      </button>
+    <div className="w-full h-full flex flex-col justify-between items-center select-none bg-blue-500 text-white  py-5">
+      <div className="w-full flex flex-row justify-between pr-5 pl-5 font-medium">
+        <div className="">Lives: {lives}</div>
+        <div className="">Points: {points}</div>
+      </div>
+
+      <div className="font-semibold font-size-l flex flex-col">
+        <div className="flex">Current Word: </div>
+        <div className="flex">{words[currentWordIndex]}</div>
+      </div>
+
+      <div className="flex gap-8 w-full px-8 pb-4">
+        <Button
+          className="bg-white text-neutral-900 font-medium w-full h-16"
+          onClick={handleNewButtonClick}
+          disabled={lives <= 0}
+        >
+          New
+        </Button>
+        <Button
+          className="bg-white text-neutral-900 font-medium w-full h-16"
+          onClick={handleSeenButtonClick}
+          disabled={lives <= 0}
+        >
+          Seen
+        </Button>
+      </div>
     </div>
   );
 };
