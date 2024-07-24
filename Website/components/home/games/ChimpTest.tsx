@@ -64,7 +64,7 @@ const ChimpTest: React.FC = () => {
 
   const sendScore = () => {
     window.parent.postMessage(
-      { type: "gameEnd", score: level - 1 },
+      { type: "gameEnd", score: ((level - 1)*5) },
       window.location.origin
     );
   };
