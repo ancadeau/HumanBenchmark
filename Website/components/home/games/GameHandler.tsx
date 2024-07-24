@@ -13,6 +13,7 @@ const games: Games[] = [
   { name: "Speed Test", url: "/games/speedTest", backendName: "speedTest" },
   { name: "Word Memory", url: "/games/wordMemory", backendName: "wordMemory" },
   { name: "Number Memory", url: "/games/numberMemory", backendName: "numberMemory" },
+  { name: "Sequence Memory", url: "/games/sequenceMemory", backendName: "sequenceMemory" },
   // { name: "Memory Game", url: "/app/memoryGame", backendName: "memoryGame" },
   // { name: "Reaction Test", url: "/app/reactionTest", backendName: "reactionTest" },
 ];
