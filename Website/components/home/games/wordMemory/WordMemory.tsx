@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import gameWords from "./words";
 
@@ -69,9 +70,9 @@ const WordMemory: React.FC = () => {
 
   const handleNextGameClick = () => {
     window.parent.postMessage(
-        { type: "gameEnd", score: points },
-          window.location.origin
-      );
+      { type: "gameEnd", score: points },
+      window.location.origin
+    );
   };
 
   if (gameOver) {
