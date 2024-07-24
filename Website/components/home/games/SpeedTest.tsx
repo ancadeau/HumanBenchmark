@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Button } from "@nextui-org/button";
+import { EclairIcon } from "@/components/icons/EclairIcon";
+import { BigNowPhrase } from "@/components/icons/BigNowPhrase";
 
 const SpeedTest: React.FC = () => {
   const [gameState, setGameState] = useState<
@@ -41,21 +42,40 @@ const SpeedTest: React.FC = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center">
-      {gameState === "initial" && <Button onClick={handleStart}>Start</Button>}
+    <div className="w-full h-full flex flex-col justify-center items-center select-none">
+      {gameState === "initial" && <div onClick={handleStart}>Start</div>}
       {gameState === "waiting" && (
-        <div className="w-full h-full" style={{ backgroundColor: "red" }}></div>
+        <div className="w-full h-full flex flex-col justify-center items-center gap-32 bg-red-500 text-white font-medium">
+          <EclairIcon />
+          <div className="text-center">
+            Click when the screen turns
+            <p className="text-lime-400 font-bold">GREEN</p>
+          </div>
+        </div>
       )}
       {gameState === "click" && (
         <div
-          className="w-full h-full"
-          style={{ backgroundColor: "green" }}
+          className="w-full h-full flex flex-col justify-center items-center gap-32 bg-green-500 text-white font-medium"
           onClick={handleClick}
-        ></div>
+        >
+          <EclairIcon />
+          <div className="text-center">
+            CLICK THE SCREEN
+            <BigNowPhrase />
+          </div>
+        </div>
       )}
       {gameState === "result" && (
-        <div className="w-full h-full flex flex-col justify-center items-center">
-          <p>Time to click: {clickTime} ms</p>
+        <div className="w-full h-full flex flex-col justify-center items-center gap-32 bg-blue-500 text-white font-medium">
+          <EclairIcon />
+          <div className="text-center">
+            You clicked in:
+            <p className="font-bold text-4xl">{clickTime} ms</p>
+          </div>
+          <div className="text-center">
+            Click to get to the <br />
+            NEXT TEST
+          </div>
         </div>
       )}
     </div>

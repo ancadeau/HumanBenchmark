@@ -6,7 +6,7 @@ export const Content = () => {
   return (
     <div className="scroll-container">
       <GameHandler />
-      <div className="section bg-red-100">Section 2</div>
+      <div className="section bg-blue-700">Section 2</div>
     </div>
   );
 };

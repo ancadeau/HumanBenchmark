@@ -1,4 +1,6 @@
 "use client";
+import { CatchPhrase } from "@/components/icons/CatchPhrase";
+import { DownArrowIcon } from "@/components/icons/DownArrowIcon";
 import React, { useState, useEffect } from "react";
 
 interface Games {
@@ -14,6 +16,7 @@ const games: Games[] = [
 ];
 
 const GameHandler: React.FC = () => {
+  const [isGameLaunched, setIsGameLaunched] = useState(false);
   const [currentGameIndex, setCurrentGameIndex] = useState(0);
   const [scores, setScores] = useState<{ [key: string]: number }>({});
 
@@ -48,7 +51,23 @@ const GameHandler: React.FC = () => {
   }, [currentGameIndex, scores]);
 
   return (
-    <iframe src={games[currentGameIndex].url} className="section bg-red-100 w-full" />
+    <div className="section w-full">
+      {isGameLaunched ? (
+        <iframe src={games[currentGameIndex].url} className="w-full h-full" />
+      ) : (
+        <div
+          className="w-full h-full flex flex-col justify-between items-center bg-blue-500"
+          onClick={() => setIsGameLaunched(true)}
+        >
+          <div className="pt-100"></div>
+          <CatchPhrase className="flex-grow flex flex-col justify-center items-center" />
+          <div className="flex flex-col justify-end items-center w-full p-4 text-white color">
+            Click to START
+            <DownArrowIcon />
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
