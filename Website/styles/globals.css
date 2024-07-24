@@ -8,6 +8,10 @@ body {
   margin: 0;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   font-size: 24px;
@@ -28,6 +32,17 @@ body {
   --black: #333333;
 }
 
-* {
-  box-sizing: border-box;
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.section {
+  height: calc(100vh - 4rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+  flex-shrink: 0;
 }
