@@ -74,6 +74,7 @@ const Spiderman: React.FC<SkillChartProps> = ({ datasets }) => {
         scales: {
           r: {
             suggestedMin: 0,
+            suggestedMax: 100,
           },
         },
         elements: {
