@@ -1,6 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { Button } from "@nextui-org/button";
+import React from "react";
 import SpeedTest from "@/components/home/games/SpeedTest";
 
 const speedTest: React.FC = () => {
