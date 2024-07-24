@@ -1,12 +1,11 @@
-<?php
+﻿<?php
 
 // Start the session
 session_start();
-ob_start();
 
 if (!isset($_SESSION['profile'])) {
     header("Location: login.php");
-    http_response_code(301);
+    http_response_code(401);
 } else {
-    include_once "html/index.html";
+    include_once "html/profile.html";
 }
