@@ -64,7 +64,7 @@ const ChimpTest: React.FC = () => {
 
   const sendScore = () => {
     window.parent.postMessage(
-      { type: "gameEnd", score: ((level - 1)*5) },
+      { type: "gameEnd", score: ((level - 4)*5) },
       window.location.origin
     );
   };
@@ -115,7 +115,7 @@ const ChimpTest: React.FC = () => {
         <>
           <div className="top-4 text-2xl font-bold w-full max-w-screen-lg p-2 flex justify-between">
             <p>Life left: {3 - strikes}</p>
-            <p>Score: {level - 1}</p>
+            <p>Score: {level - 4}</p>
           </div>
           <div className="border-4 border-blue-600 w-full max-w-screen-lg p-2">
             <div style={gridStyle}>
@@ -147,7 +147,7 @@ const ChimpTest: React.FC = () => {
         >
           <div className="text-center">
             Game Over!
-            <p className="font-bold text-4xl">Level Reached: {level - 1}</p>
+            <p className="font-bold text-4xl">Level Reached: {level - 4}</p>
           </div>
           <div className="text-center">
             Click to get to the <br />
