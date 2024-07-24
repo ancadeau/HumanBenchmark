@@ -1,7 +1,6 @@
 services:
   
   backend:
-    container_name: backend
     build:
       context: ./Backend
       dockerfile: ./Dockerfile
@@ -9,23 +8,45 @@ services:
       - "8080:8080"
     depends_on:
       database:
-        condition: service_healthy
+        condition: service_started
+    links:
+      - "database:database"
+    volumes:
+      - 'front_build:/var/www/html/'
+  
+  phpmyadmin:
+    image: phpmyadmin
+    profiles: [dev]
+    ports:
+      - 4242:80
+    environment:
+      - PMA_HOST=database
+      - PMA_PORT=3306
+      - PMA_USER=human
+      - PMA_PASSWORD=the_cake_is_a_lie
+      # - PMA_CONTROLUSER=human
+      # - PMA_CONTROLPASS=the_cake_is_a_lie
+      - PMA_PMADB=human_benchmark
+    depends_on:
+      database:
+        condition: service_started
+    links:
+      - "database:database"
   
   website:
-    container_name: website
     build:
       context: ./Website
       dockerfile: ./Dockerfile
-      args:
-        HOST: "0.0.0.0"
-        PORT: 3000
+#      args:
+#        HOST: "0.0.0.0"
+#        PORT: 3000
     ports:
       - "3000:3000"
+    volumes:
+      - 'front_build:/html/'
   
   database:
     image: mariadb
-    ports:
-      - "3306:3306"
     environment:
       - MARIADB_RANDOM_ROOT_PASSWORD=1
     volumes:
@@ -34,4 +55,6 @@ services:
 
 volumes:
   db:
+    driver: local
+  front_build:
     driver: local
