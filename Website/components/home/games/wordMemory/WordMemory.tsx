@@ -71,23 +71,30 @@ const WordMemory: React.FC = () => {
 
   const handleNextGameClick = () => {
     window.parent.postMessage(
-      { type: "gameEnd", score: (points*50)/30 },
+      { type: "gameEnd", score: (points * 50) / 30 },
       window.location.origin
     );
   };
 
   if (gameOver) {
     return (
-      <div onClick={handleNextGameClick}>
-        <h1>End of the test</h1>
-        <p>Your score: {points}</p>
-        <p>Click to go to the next game</p>
+      <div
+        onClick={handleNextGameClick}
+        className="w-full h-full flex flex-col justify-center items-center select-none bg-blue-500 text-white py-5 cursor-pointer"
+      >
+        <h1 className="font-bold text-4xl mb-4">End of the Test</h1>
+        <div className="text-center mb-6">
+          <p className="text-xl mb-2">
+            Your Score: <span className="font-bold">{points}</span>
+          </p>
+          <p className="text-lg mb-1">Click to go to the next game</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="w-full h-full flex flex-col justify-between items-center select-none bg-blue-500 text-white  py-5">
+    <div className="w-full h-full flex flex-col justify-between items-center select-none bg-blue-500 text-white py-5">
       <div className="w-full flex flex-row justify-between pr-5 pl-5 font-medium">
         <div className="">Lives: {lives}</div>
         <div className="">Points: {points}</div>

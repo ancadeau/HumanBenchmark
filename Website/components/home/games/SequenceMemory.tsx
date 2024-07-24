@@ -67,7 +67,7 @@ const SequenceMemory: React.FC = () => {
 
   const handleNextGameClick = () => {
     window.parent.postMessage(
-      { type: "gameEnd", score: (points*50)/8.5 },
+      { type: "gameEnd", score: (points * 50) / 8.5 },
       window.location.origin
     );
   };
@@ -108,9 +108,15 @@ const SequenceMemory: React.FC = () => {
         onClick={handleNextGameClick}
         className="w-full h-full flex flex-col justify-center items-center select-none bg-blue-500 text-white py-5"
       >
-        <h1>End of the test</h1>
-        <p>Your score: {points}</p>
-        <p>Click to go to the next game</p>
+        <h1 className="font-bold text-4xl mb-4">End of the Test</h1>
+        <div className="text-center mb-6">
+          <p className="text-xl mb-2">
+            Your Score: <span className="font-bold">{points}</span>
+          </p>
+        </div>
+        <div className="ext-xl font-bold text-center">
+          Click on the screen to go to the next game
+        </div>
       </div>
     );
   }
