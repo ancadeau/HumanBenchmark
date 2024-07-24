@@ -9,6 +9,7 @@ interface Dataset {
 
 interface SkillChartProps {
   datasets: Dataset[];
+  labels: string[];
 }
 
 const getRandomColor = () => {
@@ -38,13 +39,11 @@ const generateRandomColors = () => {
   };
 };
 
-const Spiderman: React.FC<SkillChartProps> = ({ datasets }) => {
+const LineChart: React.FC<SkillChartProps> = ({ datasets, labels }) => {
   const chartRef = useRef<Chart | null>(null);
 
   useEffect(() => {
-    const canvas = document.getElementById(
-      "spiderman-chart"
-    ) as HTMLCanvasElement;
+    const canvas = document.getElementById("line-chart") as HTMLCanvasElement;
     const ctx = canvas.getContext("2d");
 
     if (chartRef.current) {
@@ -60,49 +59,34 @@ const Spiderman: React.FC<SkillChartProps> = ({ datasets }) => {
     });
 
     chartRef.current = new Chart(ctx!, {
-      type: "radar",
+      type: "line",
       data: {
-        labels: [
-          "Reaction Time",
-          "Word Memory",
-          "Chimp Test",
-          "Number Memory",
-          "Sequence Memory",
-        ],
+        labels: labels,
         datasets: preparedDatasets,
       },
       options: {
         scales: {
-          r: {
-            suggestedMin: 0,
-            suggestedMax: 100,
-          },
-        },
-        elements: {
-          line: {
-            borderWidth: 3,
+          y: {
+            beginAtZero: true,
+            max: 100,
           },
         },
       },
     });
 
     return () => {
-      if (chartRef.current) {
-        chartRef.current.destroy();
-      }
+      chartRef.current?.destroy();
     };
-  }, [datasets]);
+  }, [datasets, labels]);
 
   return (
-    <div>
-      <canvas
-        id="spiderman-chart"
-        width="500"
-        height="500"
-        style={{ display: "block", maxWidth: "500px", maxHeight: "500px" }}
-      ></canvas>
-    </div>
+    <canvas
+      id="line-chart"
+      width="800"
+      height="500"
+      style={{ display: "block", maxWidth: "800px", maxHeight: "500px" }}
+    />
   );
 };
 
-export default Spiderman;
+export default LineChart;

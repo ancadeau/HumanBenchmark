@@ -15,7 +15,7 @@ export const Login = () => {
   const initialValues: LoginFormType = {
     username: "",
     password: "",
-    rememberMe: false
+    rememberMe: false,
   };
 
   const handleLogin = useCallback(
@@ -62,10 +62,17 @@ export const Login = () => {
                 />
               </div>
               <div className="flex w-full justify-between items-center mb-4">
-                <Checkbox className="text-gray-500 text-base font-normal" checked={values.rememberMe} onChange={handleChange("rememberMe")}>
+                <Checkbox
+                  className="text-gray-500 text-base font-normal"
+                  checked={values.rememberMe}
+                  onChange={handleChange("rememberMe")}
+                >
                   Remember me
                 </Checkbox>
-                <Link href="/forgot-password" className="text-blue-500 text-sm font-bold">
+                <Link
+                  href="/forgot-password"
+                  className="text-blue-500 text-sm font-bold"
+                >
                   Forgot password?
                 </Link>
               </div>
