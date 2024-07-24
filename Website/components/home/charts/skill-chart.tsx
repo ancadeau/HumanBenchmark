@@ -64,9 +64,9 @@ const Spiderman: React.FC<SkillChartProps> = ({ datasets }) => {
         labels: [
           "Reaction Time",
           "Word Memory",
+          "Chimp Test",
           "Number Memory",
           "Sequence Memory",
-          "Chimp Test",
         ],
         datasets: preparedDatasets,
       },

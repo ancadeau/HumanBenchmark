@@ -27,6 +27,7 @@ const SpeedTest: React.FC = () => {
 
   const handleStart = () => {
     setGameState("waiting");
+    setErrorMessage("");
   };
 
   const handleClick = () => {
@@ -39,10 +40,12 @@ const SpeedTest: React.FC = () => {
   };
 
   const sendScore = () => {
-      window.parent.postMessage(
-        { type: "gameEnd", score: 100-((clickTime*50)/273) },
-        window.location.origin
-      );
+    let scaledScore = 100 - (clickTime * 50) / 273;
+    scaledScore = scaledScore < 0 ? 0 : scaledScore;
+    window.parent.postMessage(
+      { type: "gameEnd", score: scaledScore },
+      window.location.origin
+    );
   };
 
   const pressOnRed = () => {
@@ -50,63 +53,73 @@ const SpeedTest: React.FC = () => {
     setGameState("initial");
   };
 
-  return (
-    <div className="w-full h-full flex flex-col justify-center items-center select-none">
-      {gameState === "initial" && (
-        <div
-          className="w-full h-full flex flex-col justify-center items-center select-none"
-          onClick={handleStart}
-        >
-          {errorMessage === "" ? (
-            ""
-          ) : (
-            <div className="text-red-500">{errorMessage}</div>
+  if (gameState === "initial") {
+    return (
+      <div className="w-full h-full flex flex-col justify-center items-center select-none bg-blue-500 text-white py-5">
+          {errorMessage && (
+            <div className="text-red-500 mb-4 font-bold">{errorMessage}</div>
           )}
-          Start the game
+          <h1 className="font-bold text-3xl mb-4">Speed Test Game</h1>
+          <button
+            className="px-4 py-2 bg-blue-600 text-white font-medium rounded border-1 border-white hover:bg-blue-700"
+            onClick={handleStart}
+          >
+            Start Game
+          </button>
+      </div>
+    );
+  }
+
+  if (gameState === "waiting") {
+    return (
+      <div
+        className="w-full h-full flex flex-col justify-center items-center gap-32 bg-red-500 text-white font-medium"
+        onClick={pressOnRed}
+      >
+        <EclairIcon />
+        <div className="text-center">
+          Click when the screen turns
+          <p className="text-lime-400 font-bold">GREEN</p>
         </div>
-      )}
-      {gameState === "waiting" && (
-        <div
-          className="w-full h-full flex flex-col justify-center items-center gap-32 bg-red-500 text-white font-medium"
-          onClick={pressOnRed}
-        >
-          <EclairIcon />
-          <div className="text-center">
-            Click when the screen turns
-            <p className="text-lime-400 font-bold">GREEN</p>
-          </div>
+      </div>
+    );
+  }
+
+  if (gameState === "click") {
+    return (
+      <div
+        className="w-full h-full flex flex-col justify-center items-center gap-32 bg-green-500 text-white font-medium"
+        onClick={handleClick}
+      >
+        <EclairIcon />
+        <div className="text-center">
+          CLICK THE SCREEN
+          <BigNowPhrase />
         </div>
-      )}
-      {gameState === "click" && (
-        <div
-          className="w-full h-full flex flex-col justify-center items-center gap-32 bg-green-500 text-white font-medium"
-          onClick={handleClick}
-        >
-          <EclairIcon />
-          <div className="text-center">
-            CLICK THE SCREEN
-            <BigNowPhrase />
-          </div>
+      </div>
+    );
+  }
+
+  if (gameState === "result") {
+    return (
+      <div
+        className="w-full h-full flex flex-col justify-center items-center gap-32 bg-blue-500 text-white font-medium"
+        onClick={sendScore}
+      >
+        <EclairIcon />
+        <div className="text-center">
+          You clicked in:
+          <p className="font-bold text-4xl">{clickTime} ms</p>
         </div>
-      )}
-      {gameState === "result" && (
-        <div
-          className="w-full h-full flex flex-col justify-center items-center gap-32 bg-blue-500 text-white font-medium"
-          onClick={sendScore}
-        >
-          <EclairIcon />
-          <div className="text-center">
-            You clicked in:
-            <p className="font-bold text-4xl">{clickTime} ms</p>
-          </div>
-          <div className="text-center">
-            Click to get to the <br />
-            NEXT TEST
-          </div>
+        <div className="text-center">
+          Click to get to the <br />
+          NEXT TEST
         </div>
-      )}
-    </div>
-  );
+      </div>
+    );
+  }
+
+  return null;
 };
 
 export default SpeedTest;
