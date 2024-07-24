@@ -17,7 +17,7 @@ export const Login = () => {
   const initialValues: LoginFormType = {
     username: "",
     password: "",
-    rememberMe: false
+    rememberMe: false,
   };
 
   const handleLogin = useCallback(
