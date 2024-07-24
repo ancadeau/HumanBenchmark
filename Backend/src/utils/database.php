@@ -1,4 +1,4 @@
-<?php // database.php
+<?php
 
 $host = 'database;port=3306';
 $data = 'human_benchmark';

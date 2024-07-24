@@ -11,7 +11,6 @@ import {
 } from "@nextui-org/react";
 import React, { useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { deleteAuthCookie } from "@/actions/auth.action";
 import { ProfileIcon } from "../icons/ProfileIcon";
 import { LogoutIcon } from "../icons/LogoutIcon";
 
@@ -19,7 +18,7 @@ export const UserDropdown = () => {
   const router = useRouter();
 
   const handleLogout = useCallback(async () => {
-    await deleteAuthCookie();
+    // await deleteAuthCookie();
     router.replace("/login");
   }, [router]);
 

@@ -12,6 +12,8 @@ import {
 import React from "react";
 import { UserDropdown } from "./user-dropdown";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+import logo from "@/public/logo.png";
 
 interface Props {
   children: React.ReactNode;
@@ -57,7 +59,11 @@ export const MyNavbar = () => {
       <NavbarContent className="hidden sm:flex" justify="start">
         <NavbarBrand>
           <Link href="/">
-            <img src="/logo.png" alt="Logo" className="h-10" />
+            <Image
+              src={logo}
+              alt="Logo"
+              className="w-12 h-12"
+            />
           </Link>
         </NavbarBrand>
       </NavbarContent>
@@ -98,12 +104,22 @@ export const MyNavbar = () => {
               className="w-full"
               color={
                 item === "PLAY"
-                  ? isLinkActive("/") ? "primary" : "foreground"
+                  ? isLinkActive("/")
+                    ? "primary"
+                    : "foreground"
                   : item === "LEADERBOARD"
-                  ? isLinkActive("/leaderboard") ? "primary" : "foreground"
+                  ? isLinkActive("/leaderboard")
+                    ? "primary"
+                    : "foreground"
                   : "foreground"
               }
-              href={item === "PLAY" ? "/" : item === "LEADERBOARD" ? "/leaderboard" : "/"}
+              href={
+                item === "PLAY"
+                  ? "/"
+                  : item === "LEADERBOARD"
+                  ? "/leaderboard"
+                  : "/"
+              }
               size="lg"
             >
               {item}

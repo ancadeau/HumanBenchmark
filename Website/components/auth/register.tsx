@@ -1,14 +1,16 @@
 "use client";
 
-import { createAuthCookie } from "@/actions/auth.action";
 import { RegisterSchema } from "@/helpers/schemas";
 import { RegisterFormType } from "@/helpers/types";
-import { Input, Button, Spacer, DateInput, DateValue } from "@nextui-org/react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Input, Button, DateInput, DateValue } from "@nextui-org/react";
+import { Formik, Form } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { getLocalTimeZone, parseDate, today } from "@internationalized/date";
+import Image from "next/image";
+import logo from "@/public/logo.png";
+import {register} from "@/utils/api";
 
 export const Register = () => {
   const router = useRouter();
@@ -22,11 +24,13 @@ export const Register = () => {
 
   const handleRegister = useCallback(
     async (values: RegisterFormType) => {
-      // `values` contains name, email & password. You can use provider to register user
-      console.log(values.dob.toString());
-
-      await createAuthCookie();
-      router.replace("/");
+      const response = await register(values.username, values.password, values.dob);
+      const data = await response.json();
+      if (response.ok) {
+        console.log(data.value);
+      } else {
+        console.log(data.error);
+      }
     },
     [router]
   );
@@ -35,7 +39,11 @@ export const Register = () => {
     <div className="flex justify-center items-center h-screen bg-light">
       <div className="w-7/8 flex flex-col items-center">
         <div className="text-center text-[25px] font-bold mb-6 w-full">
-          <img src="logo.png" alt="Logo" className="mx-auto mb-4" />
+          <Image
+            src={logo}
+            alt="Logo"
+            className="mx-auto mb-4"
+          />
           <h1>Welcome to Brainer</h1>
           <p className="text-gray-500 text-base font-normal">
             Sign up now and get full access to our brain tester.
@@ -84,7 +92,9 @@ export const Register = () => {
                   labelPlacement="outside-left"
                   maxValue={today(getLocalTimeZone())}
                   minValue={parseDate("1900-01-01")}
-                  onChange={(value: DateValue) => handleChange("dob")(value.toString())}
+                  onChange={(value: DateValue) =>
+                    handleChange("dob")(value.toString())
+                  }
                 />
               </div>
               <Button

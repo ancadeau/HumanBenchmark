@@ -5,12 +5,14 @@ services:
       context: ./Backend
       dockerfile: ./Dockerfile
     ports:
-      - "8080:80"
+      - "8080:8080"
     depends_on:
       database:
         condition: service_started
     links:
       - "database:database"
+    volumes:
+      - 'front_build:/var/www/html/'
   
   phpmyadmin:
     image: phpmyadmin
@@ -35,11 +37,13 @@ services:
     build:
       context: ./Website
       dockerfile: ./Dockerfile
-      args:
-        HOST: "0.0.0.0"
-        PORT: 3000
+#      args:
+#        HOST: "0.0.0.0"
+#        PORT: 3000
     ports:
       - "3000:3000"
+    volumes:
+      - 'front_build:/html/'
   
   database:
     image: mariadb
@@ -51,4 +55,6 @@ services:
 
 volumes:
   db:
+    driver: local
+  front_build:
     driver: local
