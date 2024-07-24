@@ -67,7 +67,7 @@ const SequenceMemory: React.FC = () => {
 
   const handleNextGameClick = () => {
     window.parent.postMessage(
-      { type: "gameEnd", score: (points*50)/8.5 },
+      { type: "gameEnd", score: (points * 50) / 8.5 },
       window.location.origin
     );
   };
@@ -108,23 +108,47 @@ const SequenceMemory: React.FC = () => {
         onClick={handleNextGameClick}
         className="w-full h-full flex flex-col justify-center items-center select-none bg-blue-500 text-white py-5"
       >
-        <h1>End of the test</h1>
-        <p>Your score: {points}</p>
-        <p>Click to go to the next game</p>
+        <h1 className="font-bold text-4xl mb-4">End of the Test</h1>
+        <div className="text-center mb-6">
+          <p className="text-xl mb-2">
+            Your Score: <span className="font-bold">{points}</span>
+          </p>
+        </div>
+        <div className="text-xl font-bold text-center">
+          Click on the screen to go to the next game
+        </div>
       </div>
     );
   }
 
   if (gameState === "initial") {
     return (
-      <div className="w-full h-full flex flex-col justify-center items-center select-none bg-blue-500 text-white py-5">
+      <div
+        className="w-full h-full flex flex-col justify-center items-center select-none bg-blue-500 text-white py-5"
+        onClick={handleStartGameClick}
+      >
         <h1 className="font-bold text-3xl mb-4">Sequence Memory Game</h1>
-        <button
-          className="px-4 py-2 bg-blue-600 text-white font-medium rounded border-1 border-white hover:bg-blue-700"
-          onClick={handleStartGameClick}
-        >
-          Start Game
-        </button>
+        <p className="text-lg text-center mb-4">
+          Objective: Test and improve your sequential memory.
+          <br />
+          How to Play:
+          <br />
+          1. A sequence of flashing squares is displayed on the screen.
+          <br />
+          2. Try to memorize the order in which the squares flash.
+          <br />
+          3. Reproduce the sequence by clicking on the squares in the same
+          order.
+          <br />
+          4. If you correctly reproduce the sequence, a new, longer sequence is
+          displayed.
+          <br />
+          5. If you click on a square out of order, the game ends. Your final
+          score is based on the number of correct sequences you memorized.
+          <br />
+          <br />
+        </p>
+        <p className="font-bold">Click on the screen to start the game.</p>
       </div>
     );
   }

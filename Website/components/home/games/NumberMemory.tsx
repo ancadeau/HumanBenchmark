@@ -49,33 +49,65 @@ const NumberMemory: React.FC = () => {
 
   const handleNextGameClick = () => {
     window.parent.postMessage(
-      { type: "gameEnd", score: (points*50)/7 },
+      { type: "gameEnd", score: (points * 50) / 7 },
       window.location.origin
     );
   };
 
   if (gameState === "result") {
     return (
-      <div onClick={handleNextGameClick}>
-        <h1>End of the test</h1>
-        <p>Your score: {points}</p>
-        <p>the correct number was: {currentNumber}</p>
-        <p>you guessed: {userInput}</p>
-        <p>Click to go to the next game</p>
+      <div
+        className="w-full h-full flex flex-col justify-center items-center select-none bg-blue-500 text-white py-5"
+        onClick={handleNextGameClick}
+      >
+        <h1 className="font-bold text-4xl mb-4">End of the Test</h1>
+        <div className="text-center mb-6">
+          <p className="text-xl mb-2">
+            Your Score: <span className="font-bold">{points}</span>
+          </p>
+          <p className="text-lg mb-1">
+            The correct number was:{" "}
+            <span className="font-bold">{currentNumber}</span>
+          </p>
+          <p className="text-lg mb-1">
+            You guessed: <span className="font-bold">{userInput}</span>
+          </p>
+        </div>
+        <div className="text-xl font-bold text-center">
+          Click on the screen to go to the next game
+        </div>
       </div>
     );
   }
 
   if (gameState === "initial") {
     return (
-      <div className="w-full h-full flex flex-col justify-center items-center select-none bg-blue-500 text-white py-5">
+      <div
+        className="w-full h-full flex flex-col justify-center items-center select-none bg-blue-500 text-white py-5"
+        onClick={handleStartGameClick}
+      >
         <h1 className="font-bold text-3xl mb-4">Number Memory Game</h1>
-        <button
-          className="px-4 py-2 bg-blue-600 text-white font-medium rounded border-1 border-white hover:bg-blue-700"
-          onClick={handleStartGameClick}
-        >
-          Start Game
-        </button>
+        <p className="text-lg text-center mb-4">
+          Objective: Test and improve your ability to memorize sequences of
+          numbers.
+          <br />
+          How to Play:
+          <br />
+          1. A random number is displayed on the screen.
+          <br />
+          2. Try to memorize the displayed number.
+          <br />
+          3. When the number disappears, enter the number you memorized.
+          <br />
+          4. If the entered number is correct, your score increases and a longer
+          number is displayed in the next round. Otherwise, the game ends.
+          <br />
+          5. The game continues until you make a mistake. Your final score is
+          based on the number of correct numbers you memorized.
+          <br />
+          <br />
+        </p>
+        <p className="font-bold">Click on the screen to start the game.</p>
       </div>
     );
   }
@@ -97,10 +129,16 @@ const NumberMemory: React.FC = () => {
         <div className="font-semibold text-lg flex flex-col">
           <div className="flex mb-2">What was the number?</div>
           <Input
+            autoFocus
             type="number"
-            className="w-1/2"
+            className="w-full"
             value={userInput}
             onChange={handleInputChange}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleInputSubmit();
+              }
+            }}
           />
           <button
             className="mt-4 px-4 py-2 bg-blue-600 text-neutral-900 font-medium rounded"
