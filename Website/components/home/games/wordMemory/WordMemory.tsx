@@ -11,9 +11,9 @@ const WordMemory: React.FC = () => {
   const [points, setPoints] = React.useState<number>(0);
   const [availableWords, setAvailableWords] = React.useState<string[]>([]);
   const [gameOver, setGameOver] = React.useState<boolean>(false);
+  const [gameState, setGameState] = React.useState<"initial" | "playing" | "result">("initial");
 
   const randomizeWords = (words: string[]) => {
-    // Fisher-Yates shuffle algorithm
     for (let i = words.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [words[i], words[j]] = [words[j], words[i]];
@@ -38,6 +38,7 @@ const WordMemory: React.FC = () => {
     } else {
       if (lives - 1 === 0) {
         setGameOver(true);
+        setGameState("result");
       }
       setLives((prevLives) => prevLives - 1);
     }
@@ -51,6 +52,7 @@ const WordMemory: React.FC = () => {
     } else {
       if (lives - 1 === 0) {
         setGameOver(true);
+        setGameState("result");
       }
       setLives((prevLives) => prevLives - 1);
     }
@@ -76,7 +78,25 @@ const WordMemory: React.FC = () => {
     );
   };
 
-  if (gameOver) {
+  const handleStartGameClick = () => {
+    setGameState("playing");
+  };
+
+  if (gameState === "initial") {
+    return (
+      <div className="w-full h-full flex flex-col justify-center items-center select-none bg-blue-500 text-white py-5">
+        <h1 className="font-bold text-3xl mb-4">Word Memory Game</h1>
+        <button
+          className="px-4 py-2 bg-blue-600 text-white font-medium rounded border-1 border-white hover:bg-blue-700"
+          onClick={handleStartGameClick}
+        >
+          Start Game
+        </button>
+      </div>
+    );
+  }
+
+  if (gameState === "result") {
     return (
       <div
         onClick={handleNextGameClick}
