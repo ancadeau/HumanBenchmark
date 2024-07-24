@@ -1,17 +1,14 @@
-CREATE DATABASE IF NOT EXISTS users;
-USE users;
+CREATE DATABASE IF NOT EXISTS human_benchmark;
+USE human_benchmark;
 
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(255) NOT NULL,
     username VARCHAR(24) NOT NULL,
     password CHAR(60) NOT NULL,
+    dob DATE,
     auth_token CHAR(128),
     best_run INT
 );
-
-CREATE DATABASE IF NOT EXISTS scores;
-USE scores;
 
 CREATE TABLE IF NOT EXISTS scores (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -24,3 +21,6 @@ CREATE TABLE IF NOT EXISTS scores (
     date DATE,
     score INT NOT NULL
 );
+
+CREATE USER 'human'@'%' IDENTIFIED BY 'the_cake_is_a_lie';
+GRANT ALL PRIVILEGES ON human_benchmark.* TO 'human'@'%';
