@@ -1,6 +1,5 @@
 "use client";
 
-import { createAuthCookie } from "@/actions/auth.action";
 import { LoginSchema } from "@/helpers/schemas";
 import { LoginFormType } from "@/helpers/types";
 import { Input, Button, Checkbox, Spacer } from "@nextui-org/react";
@@ -8,6 +7,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
+import { login } from "@/utils/api";
 
 export const Login = () => {
   const router = useRouter();
@@ -20,10 +20,13 @@ export const Login = () => {
 
   const handleLogin = useCallback(
     async (values: LoginFormType) => {
-      // `values` contains email & password. You can use provider to connect user
-
-      await createAuthCookie();
-      router.replace("/");
+      const response = await login(values.username, values.password);
+      const data = await response.json();
+      if (response.ok) {
+        console.log(data.value);
+      } else {
+        console.log(data.error);
+      }
     },
     [router]
   );

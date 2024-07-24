@@ -1,6 +1,5 @@
 "use client";
 
-import { createAuthCookie } from "@/actions/auth.action";
 import { RegisterSchema } from "@/helpers/schemas";
 import { RegisterFormType } from "@/helpers/types";
 import { Input, Button, Spacer, DateInput, DateValue } from "@nextui-org/react";
@@ -22,11 +21,7 @@ export const Register = () => {
 
   const handleRegister = useCallback(
     async (values: RegisterFormType) => {
-      // `values` contains name, email & password. You can use provider to register user
-      console.log(values.dob.toString());
-
-      await createAuthCookie();
-      router.replace("/");
+      console.log(values);
     },
     [router]
   );
