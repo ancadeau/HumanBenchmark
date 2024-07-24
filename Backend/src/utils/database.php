@@ -13,6 +13,8 @@ $opts =
         PDO::ATTR_EMULATE_PREPARES => false,
     ];
 
+$conn = null;
+
 try {
     $conn = new PDO($attr, $user, $pass, $opts);
 } catch (PDOException $e) {
