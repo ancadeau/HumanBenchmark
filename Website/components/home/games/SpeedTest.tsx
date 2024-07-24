@@ -10,6 +10,7 @@ const SpeedTest: React.FC = () => {
   const [randomTime, setRandomTime] = useState(0);
   const [startTime, setStartTime] = useState(0);
   const [clickTime, setClickTime] = useState(0);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -44,11 +45,31 @@ const SpeedTest: React.FC = () => {
       );
   };
 
+  const pressOnRed = () => {
+    setErrorMessage("You clicked too early");
+    setGameState("initial");
+  };
+
   return (
     <div className="w-full h-full flex flex-col justify-center items-center select-none">
-      {gameState === "initial" && <div onClick={handleStart}>Start</div>}
+      {gameState === "initial" && (
+        <div
+          className="w-full h-full flex flex-col justify-center items-center select-none"
+          onClick={handleStart}
+        >
+          {errorMessage === "" ? (
+            ""
+          ) : (
+            <div className="text-red-500">{errorMessage}</div>
+          )}
+          Start the game
+        </div>
+      )}
       {gameState === "waiting" && (
-        <div className="w-full h-full flex flex-col justify-center items-center gap-32 bg-red-500 text-white font-medium">
+        <div
+          className="w-full h-full flex flex-col justify-center items-center gap-32 bg-red-500 text-white font-medium"
+          onClick={pressOnRed}
+        >
           <EclairIcon />
           <div className="text-center">
             Click when the screen turns
@@ -69,7 +90,10 @@ const SpeedTest: React.FC = () => {
         </div>
       )}
       {gameState === "result" && (
-        <div className="w-full h-full flex flex-col justify-center items-center gap-32 bg-blue-500 text-white font-medium" onClick={sendScore}>
+        <div
+          className="w-full h-full flex flex-col justify-center items-center gap-32 bg-blue-500 text-white font-medium"
+          onClick={sendScore}
+        >
           <EclairIcon />
           <div className="text-center">
             You clicked in:
