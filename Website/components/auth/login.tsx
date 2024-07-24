@@ -8,6 +8,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { login } from "@/utils/api";
+import Image from "next/image";
+import logo from "@/public/logo.png";
 
 export const Login = () => {
   const router = useRouter();
@@ -35,7 +37,11 @@ export const Login = () => {
     <div className="flex justify-center items-center h-screen bg-light">
       <div className="w-7/8 flex flex-col items-center">
         <div className="text-center text-[25px] font-bold mb-6 w-full">
-          <img src="logo.png" alt="Logo" className="mx-auto mb-4" />
+          <Image
+            src={logo}
+            alt="Logo"
+            className="mx-auto mb-4"
+          />
           <h1>Welcome back to Brainer</h1>
           <p className="text-gray-500 text-base font-normal">
             Login to your account and continue training your brain.
@@ -65,10 +71,17 @@ export const Login = () => {
                 />
               </div>
               <div className="flex w-full justify-between items-center mb-4">
-                <Checkbox className="text-gray-500 text-base font-normal" checked={values.rememberMe} onChange={handleChange("rememberMe")}>
+                <Checkbox
+                  className="text-gray-500 text-base font-normal"
+                  checked={values.rememberMe}
+                  onChange={handleChange("rememberMe")}
+                >
                   Remember me
                 </Checkbox>
-                <Link href="/forgot-password" className="text-blue-500 text-sm font-bold">
+                <Link
+                  href="/forgot-password"
+                  className="text-blue-500 text-sm font-bold"
+                >
                   Forgot password?
                 </Link>
               </div>

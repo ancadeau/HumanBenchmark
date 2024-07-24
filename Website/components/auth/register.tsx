@@ -8,6 +8,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { getLocalTimeZone, parseDate, today } from "@internationalized/date";
+import Image from "next/image";
+import logo from "@/public/logo.png";
 
 export const Register = () => {
   const router = useRouter();
@@ -30,7 +32,11 @@ export const Register = () => {
     <div className="flex justify-center items-center h-screen bg-light">
       <div className="w-7/8 flex flex-col items-center">
         <div className="text-center text-[25px] font-bold mb-6 w-full">
-          <img src="logo.png" alt="Logo" className="mx-auto mb-4" />
+          <Image
+            src={logo}
+            alt="Logo"
+            className="mx-auto mb-4"
+          />
           <h1>Welcome to Brainer</h1>
           <p className="text-gray-500 text-base font-normal">
             Sign up now and get full access to our brain tester.
@@ -79,7 +85,9 @@ export const Register = () => {
                   labelPlacement="outside-left"
                   maxValue={today(getLocalTimeZone())}
                   minValue={parseDate("1900-01-01")}
-                  onChange={(value: DateValue) => handleChange("dob")(value.toString())}
+                  onChange={(value: DateValue) =>
+                    handleChange("dob")(value.toString())
+                  }
                 />
               </div>
               <Button
