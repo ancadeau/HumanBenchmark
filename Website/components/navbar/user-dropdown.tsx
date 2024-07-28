@@ -6,7 +6,6 @@ import {
   DropdownMenu,
   DropdownSection,
   DropdownTrigger,
-  Navbar,
   NavbarItem,
 } from "@nextui-org/react";
 import React, { useCallback } from "react";
@@ -19,7 +18,7 @@ export const UserDropdown = () => {
 
   const handleLogout = useCallback(async () => {
     // await deleteAuthCookie();
-    router.push("/wdp/Group3/login.html");
+    router.push("/wdp/Group3/api/logout.php");
   }, [router]);
 
 
