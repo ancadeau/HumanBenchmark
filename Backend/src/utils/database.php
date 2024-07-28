@@ -1,9 +1,9 @@
 <?php
 
-$host = 'database;port=3306';
-$data = 'human_benchmark';
-$user = 'human';
-$pass = 'the_cake_is_a_lie';
+$host = 'localhost;port=3306';
+$data = 'Group3';
+$user = 'Group3';
+$pass = '6067';
 $chrs = 'utf8mb4';
 $attr = "mysql:host=$host;dbname=$data;charset=$chrs";
 $opts =
