@@ -10,7 +10,7 @@ import { useCallback } from "react";
 import { getLocalTimeZone, parseDate, today } from "@internationalized/date";
 import Image from "next/image";
 import logo from "@/public/logo.png";
-import {register} from "@/utils/api";
+import {login, register} from "@/utils/api";
 
 export const Register = () => {
   const router = useRouter();
@@ -25,13 +25,12 @@ export const Register = () => {
   const handleRegister = useCallback(
     async (values: RegisterFormType) => {
       const response = await register(values.username, values.password, values.dob);
-      const data = await response.json();
       if (response.ok) {
         router.push("/wdp/Group3/index.html");
       } else if (response.status == 307 && response.headers.has("Location")) {
         router.push(response.headers.get("Location")!);
       } else {
-        console.log(data.error);
+        console.log(response.body);
       }
     },
     [router]

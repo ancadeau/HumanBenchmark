@@ -69,10 +69,10 @@ export const MyNavbar = () => {
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem isActive={isLinkActive("/")}>
+        <NavbarItem isActive={isLinkActive("/wdp/Group3/index.html")}>
           <Link
             color="foreground"
-            href="/"
+            href="/wdp/Group3/index.html"
             className={`${
               isLinkActive("/") ? "text-primary" : "text-foreground"
             }`}
@@ -83,9 +83,9 @@ export const MyNavbar = () => {
         <NavbarItem isActive={isLinkActive("/leaderboard")}>
           <Link
             className={`${
-              isLinkActive("/leaderboard") ? "text-primary" : "text-foreground"
+              isLinkActive("/wdp/Group3/leaderboard.html") ? "text-primary" : "text-foreground"
             }`}
-            href="/leaderboard"
+            href="/wdp/Group3/leaderboard.html"
             aria-current={isLinkActive("/leaderboard") ? "false" : "false"}
           >
             LEADERBOARD
@@ -104,21 +104,21 @@ export const MyNavbar = () => {
               className="w-full"
               color={
                 item === "PLAY"
-                  ? isLinkActive("/")
+                  ? isLinkActive("/wdp/Group3/")
                     ? "primary"
                     : "foreground"
                   : item === "LEADERBOARD"
-                  ? isLinkActive("/leaderboard")
+                  ? isLinkActive("/wdp/Group3/leaderboard.html")
                     ? "primary"
                     : "foreground"
                   : "foreground"
               }
               href={
                 item === "PLAY"
-                  ? "/"
+                  ? "/wdp/Group3/"
                   : item === "LEADERBOARD"
-                  ? "/leaderboard"
-                  : "/"
+                  ? "/wdp/Group3/leaderboard.html"
+                  : "/wdp/Group3/"
               }
               size="lg"
             >

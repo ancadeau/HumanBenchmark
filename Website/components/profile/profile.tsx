@@ -5,7 +5,7 @@ import LineChart from "../home/charts/line-char";
 import { Avatar } from "@nextui-org/react";
 
 export const Profile = () => {
-  const [name, setName] = useState("MyUserName");
+  const [name, setName] = useState("test");
   const spidermanDatasets = [
     {
       label: "1st test",

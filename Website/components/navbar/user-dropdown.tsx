@@ -19,7 +19,7 @@ export const UserDropdown = () => {
 
   const handleLogout = useCallback(async () => {
     // await deleteAuthCookie();
-    router.replace("/login");
+    router.push("/wdp/Group3/login.html");
   }, [router]);
 
 
@@ -43,10 +43,10 @@ export const UserDropdown = () => {
         aria-label="User menu actions"
         onAction={(actionKey) => console.log({ actionKey })}
       >
-        <DropdownSection title="Signed in as : MyUserName">
+        <DropdownSection title="Signed in as : test">
           <DropdownItem
             key="profile"
-            href="/profile"
+            href="/wdp/Group3/profile.html"
             startContent={<ProfileIcon className={iconClasses} />}
           >
             Profile
