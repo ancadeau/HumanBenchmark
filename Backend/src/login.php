@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $profile = new Profile($row['id'], $username, $dob, $row["best_run"]);
             $_SESSION['profile'] = $profile;
 
-            send_success("Login successful", 307, "index.php");
+            send_success("Login successful", 200);
         } else {
             send_error("Invalid password", 401);
         }

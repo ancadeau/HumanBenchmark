@@ -1,6 +1,6 @@
 <?php
 
-$host = 'localhost;port=3306';
+$host = '172.21.82.208;port=3306';
 $data = 'Group3';
 $user = 'Group3';
 $pass = '6067';
