@@ -2,8 +2,9 @@
 import {CalendarDate} from "@nextui-org/react";
 import {redirect, RedirectType} from "next/navigation";
 
-const LOGIN_URL = "/api/login.php";
-const REGISTER_URL = "/api/register.php";
+const BASE_URL = "/wdp/Group3/"
+const LOGIN_URL = BASE_URL + "/api/login.php";
+const REGISTER_URL = BASE_URL + "/api/register.php";
 
 // Login API call
 async function login(username: string, password: string): Promise<Response> {
@@ -12,7 +13,6 @@ async function login(username: string, password: string): Promise<Response> {
         headers: {
             "Cookie": document.cookie
         },
-        redirect: "follow",
         body: new URLSearchParams({
             username: username,
             password: password
@@ -20,6 +20,7 @@ async function login(username: string, password: string): Promise<Response> {
     });
 
     if (response.ok && response.headers.has("Location")) {
+        console.log("REDIRECT: " + response.headers.get("Location"));
         redirect(response.headers.get("Location")!, RedirectType.replace);
     }
 
@@ -33,7 +34,6 @@ async function register(username: string, password: string, dob: CalendarDate): 
         headers: {
             "Cookie": document.cookie
         },
-        redirect: "follow",
         body: new URLSearchParams({
             username: username,
             password: password,

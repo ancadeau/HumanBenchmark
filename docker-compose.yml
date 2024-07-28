@@ -20,13 +20,13 @@ services:
     ports:
       - 4242:80
     environment:
-      - PMA_HOST=database
+      - PMA_HOST=172.21.82.208
       - PMA_PORT=3306
-      - PMA_USER=human
-      - PMA_PASSWORD=the_cake_is_a_lie
+      - PMA_USER=Group3
+      - PMA_PASSWORD=6067
       # - PMA_CONTROLUSER=human
       # - PMA_CONTROLPASS=the_cake_is_a_lie
-      - PMA_PMADB=human_benchmark
+      - PMA_PMADB=Group3
     depends_on:
       database:
         condition: service_started

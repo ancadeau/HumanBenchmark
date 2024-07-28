@@ -1,5 +1,7 @@
-CREATE DATABASE IF NOT EXISTS human_benchmark;
-USE human_benchmark;
+# CREATE DATABASE IF NOT EXISTS human_benchmark;
+# USE human_benchmark;
+
+USE Group3;
 
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -21,5 +23,5 @@ CREATE TABLE IF NOT EXISTS scores (
     score INT NOT NULL
 );
 
-CREATE USER 'human'@'%' IDENTIFIED BY 'the_cake_is_a_lie';
-GRANT ALL PRIVILEGES ON human_benchmark.* TO 'human'@'%';
+# CREATE USER 'human'@'%' IDENTIFIED BY 'the_cake_is_a_lie';
+# GRANT ALL PRIVILEGES ON human_benchmark.* TO 'human'@'%';
