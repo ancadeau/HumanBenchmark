@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once "utils/result.php";
-if (isset($_SESSION["profile"])) {
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_SESSION["profile"])) {
     send_error("User already logged in", 307, "index.php");
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

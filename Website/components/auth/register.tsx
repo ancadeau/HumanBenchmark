@@ -27,7 +27,9 @@ export const Register = () => {
       const response = await register(values.username, values.password, values.dob);
       const data = await response.json();
       if (response.ok) {
-        console.log(data.value);
+        router.push("/wdp/Group3/index.html");
+      } else if (response.status == 307 && response.headers.has("Location")) {
+        router.push(response.headers.get("Location")!);
       } else {
         console.log(data.error);
       }
