@@ -18,7 +18,7 @@ export const UserDropdown = () => {
 
   const handleLogout = useCallback(async () => {
     // await deleteAuthCookie();
-    router.push("/wdp/Group3/api/logout.php");
+    router.push("/api/logout.php");
   }, [router]);
 
 
