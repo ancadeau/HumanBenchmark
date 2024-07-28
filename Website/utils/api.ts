@@ -2,7 +2,7 @@
 import {CalendarDate} from "@nextui-org/react";
 import {redirect, RedirectType} from "next/navigation";
 
-const BASE_URL = "/wdp/Group3/"
+const BASE_URL = "/wdp/Group3"
 const LOGIN_URL = BASE_URL + "/api/login.php";
 const REGISTER_URL = BASE_URL + "/api/register.php";
 

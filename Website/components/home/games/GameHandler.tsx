@@ -71,7 +71,7 @@ const GameHandler: React.FC = () => {
   return (
     <div className="section w-full">
       {isGameLaunched ? (
-        <iframe src={games[currentGameIndex].url} className="w-full h-full" />
+        <iframe src={"/wdp/Group3" + games[currentGameIndex].url} className="w-full h-full" />
       ) : (
         <div
           className="w-full h-full flex flex-col justify-between items-center bg-blue-500"
